@@ -2,25 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"="width=device-width, initial-scale=1.0">
-  <title>John Doe - Personal Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kristan De Castro - Personal Website</title>
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <!-- Add AOS (Animate On Scroll) Library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <!-- Google Fonts: Russo One -->
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <!-- Include SweetAlert Library -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     html {
       scroll-behavior: smooth;
     }
     body {
-      background: linear-gradient(45deg, #0a1e2b, #1a2e4b, #0a1e2b);
+      background: linear-gradient(45deg, #2b1c0a, #4b2e1a, #2b1c0a);
       background-size: 400%;
       animation: gradient 20s ease infinite;
       color: #fff;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Russo One', Arial, sans-serif;
       transition: background 0.5s ease;
+      position: relative;
+      overflow-x: hidden;
     }
 
     @keyframes gradient {
@@ -29,65 +35,55 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Light mode */
-    body.light-mode {
-      background: linear-gradient(45deg, #e0e7ff, #c7d2fe, #e0e7ff);
-      background-size: 400%;
-      animation: gradient 20s ease infinite;
-      color: #1a2e4b;
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Place particles behind all content */
     }
 
     .navbar {
-      background-color: rgba(10, 30, 43, 0.9);
+      background-color: rgba(43, 28, 10, 0.9);
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .navbar.light-mode {
-      background-color: rgba(255, 255, 255, 0.9);
     }
 
     .navbar-brand, .nav-link {
       color: #fff !important;
-    }
-
-    .navbar.light-mode .navbar-brand,
-    .navbar.light-mode .nav-link {
-      color: #1a2e4b !important;
+      font-family: 'Russo One', Arial, sans-serif;
     }
 
     .nav-link:hover {
-      color: #00b7eb !important;
+      color: #eb7d00 !important;
     }
 
     .section-title {
       font-size: 3rem;
       font-weight: bold;
       margin-bottom: 20px;
+      font-family: 'Russo One', Arial, sans-serif;
     }
 
     .section-subtitle {
       font-size: 2rem;
-      color: #00b7eb;
+      color: #eb7d00;
       margin-bottom: 40px;
+      font-family: 'Russo One', Arial, sans-serif;
     }
 
-    .skills-section, .projects-section, .about-section {
+    .home-section, .skills-section, .projects-section, .about-section, .certifications-section {
       padding: 50px 0;
     }
 
     .skill-card, .project-card {
       background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid #00b7eb;
+      border: 1px solid #eb7d00;
       padding: 20px;
       border-radius: 10px;
       text-align: center;
       transition: transform 0.3s;
       margin-bottom: 20px;
-    }
-
-    .skill-card.light-mode, .project-card.light-mode {
-      background-color: rgba(0, 0, 0, 0.05);
-      border: 1px solid #1a2e4b;
     }
 
     .skill-card:hover, .project-card:hover {
@@ -97,83 +93,23 @@
 
     .skill-icon, .project-icon {
       font-size: 2rem;
-      color: #00b7eb;
+      color: #eb7d00;
       margin-bottom: 15px;
     }
 
+    .skill-card h4, .project-card h4 {
+      font-family: 'Russo One', Arial, sans-serif;
+    }
+
     .btn-custom {
-      background-color: #00b7eb;
+      background-color: #eb7d00;
       color: #fff;
       border: none;
+      font-family: 'Russo One', Arial, sans-serif;
     }
 
     .btn-custom:hover {
-      background-color: #0099cc;
-    }
-
-    /* Chat Widget */
-    .chat-widget {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 300px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      display: none;
-      z-index: 1000;
-      border: 2px solid #00b7eb;
-    }
-
-    .chat-header {
-      background-color: #00b7eb;
-      color: #fff;
-      padding: 10px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
-    }
-
-    .chat-body {
-      padding: 10px;
-      height: 200px;
-      overflow-y: auto;
-      background-color: #f5f5f5;
-    }
-
-    .chat-input {
-      padding: 10px;
-      border-top: 1px solid #ddd;
-    }
-
-    .chat-input input {
-      width: 100%;
-      padding: 5px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .chat-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #00b7eb;
-      color: #000000;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    .chat-toggle:hover {
-      background-color: #0099cc;
+      background-color: #cc6b00;
     }
 
     /* Dark Mode Toggle */
@@ -181,16 +117,16 @@
       position: fixed;
       top: 20px;
       right: 20px;
-      background-color: #00b7eb;
+      background-color: #eb7d00;
       color: #fff;
       border: none;
       padding: 5px 10px;
       border-radius: 5px;
       cursor: pointer;
       z-index: 1000;
+      font-family: 'Russo One', Arial, sans-serif;
     }
 
-    /* Add this to your CSS */
     @media (max-width: 768px) {
       .section-title {
         font-size: 2.5rem;
@@ -202,9 +138,22 @@
         margin-bottom: 30px;
       }
     }
+
+    .profile-img {
+      transition: box-shadow 0.4s ease, transform 0.3s ease;
+      max-width: 200px; /* Prevent image from scaling too large */
+    }
+
+    .profile-img:hover {
+      box-shadow: 0 0 20px 5px #eb7d00;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
@@ -216,6 +165,7 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
           <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -224,22 +174,39 @@
     </div>
   </nav>
 
-  <!-- Dark Mode Toggle -->
-  <button class="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <!-- Home Section -->
+  <section class="home-section" id="home" style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; text-align: center;">
+    <div>
+      <img src="image/main_pic.jpg" class="img-fluid rounded-circle profile-img" alt="Profile Image" style="width: 200px; height: 200px; object-fit: cover;">
+    </div>
+    <h1 style="margin-top: 20px; font-size: 1.5rem; font-family: 'Russo One', Arial, sans-serif; color: orange;">KRISTAN CLARENCE O. DE CASTRO</h1>
+    <p style="margin-top: 10px; font-size: 1rem; font-family: Arial, sans-serif; color: #fff;">An aspiring IT professional and a Gamer</p>
+    <p style="margin-top: 10px; font-size: 1rem; font-family: Arial, sans-serif; color: #fff;">Welcome to my Personal Website</p>
+  </section>
 
   <!-- About Section -->
-  <section class="about-section" id="about" data-aos="fade-up">
+  <section class="about-section" id="about" data-aos="fade-up" data-aos-duration="1000" style="padding: 50px 0; text-align: center; margin-top: 50px;">
     <div class="container">
-      <div class="row align-items-center" style="min-height: 100vh;">
-        <div class="col-md-6">
-          <h1 class="section-title">About Me</h1>
-          <h2 class="section-subtitle">Creative Developer & Problem Solver</h2>
-          <p>Hi, I'm Kristan, a passionate web developer with a knack for creating user-friendly and visually appealing websites. With a background in computer science, I love turning ideas into reality through code.</p>
-          <p>My mission is to build impactful digital experiences that combine functionality with aesthetics. Let's create something amazing together!</p>
-          <button class="btn btn-custom mt-3">Download Resume</button>
+      <h1 class="section-title">About Me</h1>
+      <h2 class="section-subtitle">Creative Developer & Problem Solver</h2>
+      <p>I am a student of National University Lipa and currently in my second year of a Bachelor of Science in Information Technology. I chose this course because I love online games, and that is what pushed me to study this course, because I want to make a good game and make it famous all over the world and make it big, Filipino-made.</p>
+      <p>I am 20 years old and live in Quezon Province. I am just a simple kid with a dream that I want to achieve, and I will achieve it little by little.</p>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="certifications-section" id="certifications" data-aos="fade-up" data-aos-duration="1000" style="padding: 50px 0; text-align: center;">
+    <div class="container">
+      <h1 class="section-title">Certifications</h1>
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <img src="image/cyber.png" class="img-fluid rounded" alt="Certification 1">
         </div>
-        <div class="col-md-6 text-center">
-          <img src="./image/profile.jpg" class="img-fluid rounded" alt="Profile Image">
+        <div class="col-md-4">
+          <img src="image/digi.png" class="img-fluid rounded" alt="Certification 2">
+        </div>
+        <div class="col-md-4">
+          <img src="image/ic3.jpeg" class="img-fluid rounded" alt="Certification 3">
         </div>
       </div>
     </div>
@@ -253,44 +220,50 @@
       <div class="row">
         <div class="col-md-4">
           <div class="skill-card">
-            <div class="skill-icon"><i class="fab fa-html5"></i></div>
             <h4>HTML & CSS</h4>
-            <p>Building responsive and accessible web layouts with modern CSS techniques.</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 90%; background-color: #eb7d00;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="skill-card">
-            <div class="skill-icon"><i class="fab fa-js"></i></div>
             <h4>JavaScript</h4>
-            <p>Creating dynamic and interactive web applications with vanilla JS and frameworks.</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 80%; background-color: #eb7d00;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="skill-card">
-            <div class="skill-icon"><i class="fab fa-react"></i></div>
-            <h4>React</h4>
-            <p>Developing scalable and component-based front-end applications with React.</p>
+            <h4>SQL</h4>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 75%; background-color: #eb7d00;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="skill-card">
-            <div class="skill-icon"><i class="fab fa-node-js"></i></div>
-            <h4>Node.js</h4>
-            <p>Building robust back-end services and APIs with Node.js and Express.</p>
+            <h4>Bootstrap</h4>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 70%; background-color: #eb7d00;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="skill-card">
-            <div class="skill-icon"><i class="fas fa-database"></i></div>
             <h4>Databases</h4>
-            <p>Managing data with SQL and NoSQL databases like MySQL and MongoDB.</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 85%; background-color: #eb7d00;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="skill-card">
-            <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
-            <h4>Git</h4>
-            <p>Version control and collaboration using Git and platforms like GitHub.</p>
+            <h4>C++</h4>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 80%; background-color: #eb7d00;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -298,87 +271,51 @@
   </section>
 
   <!-- Projects Section -->
-  <section class="projects-section" id="projects" data-aos="fade-up">
+  <section class="projects-section" id="projects" data-aos="fade-up" style="text-align: center;">
     <div class="container">
       <h1 class="section-title">Projects</h1>
       <h2 class="section-subtitle">Showcasing My Work</h2>
       <div class="row">
-        <div class="col-md-4">
-          <div class="project-card">
-            <div class="project-icon"><i class="fas fa-laptop-code"></i></div>
-            <h4>Portfolio Website</h4>
-            <p>A responsive personal portfolio built with HTML, CSS, and JavaScript.</p>
-            <a href="#" class="btn btn-custom mt-2">View Project</a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="project-card">
-            <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
-            <h4>E-Commerce Platform</h4>
-            <p>A full-stack e-commerce app with React, Node.js, and MongoDB.</p>
-            <a href="#" class="btn btn-custom mt-2">View Project</a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="project-card">
-            <div class="project-icon"><i class="fas fa-chart-line"></i></div>
-            <h4>Data Dashboard</h4>
-            <p>An interactive dashboard for data visualization using React and Chart.js.</p>
-            <a href="#" class="btn btn-custom mt-2">View Project</a>
-          </div>
-        </div>
+        <!-- No projects left -->
       </div>
+      <!-- Button -->
+      <a href="https://github.com/kristannn139?tab=repositories" class="btn btn-custom mt-4" target="_blank">View My Projects</a>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section class="contact-section" id="contact">
-    <div class="container">
-      <h1 class="section-title">Get in Touch</h1>
-      <h2 class="section-subtitle">Let's Collaborate!</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <p>Feel free to reach out for project inquiries, collaborations, or just to say hi!</p>
-          <p><i class="fas fa-envelope"></i> john.doe@example.com</p>
-          <p><i class="fas fa-phone"></i> (123) 456-7890</p>
-          <div>
-            <a href="#" class="text-white mx-2"><i class="fab fa-github"></i></a>
-            <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
-          </div>
+  <section class="contact-section" id="contact" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; text-align: center;">
+    <div class="container" style="max-width: 600px;">
+      <h1 class="section-title">Contact Me</h1>
+      <form onsubmit="handleSubmit(event)">
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Full Name *</label>
+          <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
         </div>
-        <div class="col-md-6">
-          <img src="https://via.placeholder.com/300x150" class="img-fluid" alt="Contact Image">
+        <div class="mb-3">
+          <label for="contactNumber" class="form-label">Contact Number *</label>
+          <input type="text" class="form-control" id="contactNumber" placeholder="Enter your contact number" required>
         </div>
-      </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email *</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Leave us a few words *</label>
+          <textarea class="form-control" id="message" rows="4" placeholder="Your message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-danger">Submit</button>
+      </form>
     </div>
   </section>
 
-  <!-- Chat Widget -->
-  <div class="chat-widget" id="chatWidget">
-    <div class="chat-header">
-      <span>Chat with Me</span>
-      <button onclick="toggleChat()" style="background: none; border: none; color: #fff;"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="chat-body" id="chatBody">
-      <p>Hi! Thanks for visiting my portfolio. How can I assist you today?</p>
-    </div>
-    <div class="chat-input">
-      <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="if(event.key === 'Enter') sendMessage()">
-    </div>
-  </div>
-  <div class="chat-toggle" onclick="toggleChat()">
-    <i class="fas fa-comments"></i>
-  </div>
-
   <!-- Footer -->
-  <footer class="py-4" style="background: linear-gradient(45deg, #0a1e2b, #1a2e4b); color: #fff;">
+  <footer class="py-4" style="background: linear-gradient(45deg, #2b1c0a, #4b2e1a); color: #fff;">
     <div class="container text-center">
       <p>© 2025 Kristan. All Rights Reserved.</p>
       <div>
-        <a href="#" class="text-white mx-2"><i class="fab fa-github"></i></a>
-        <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+        <a href="https://web.facebook.com/Whateverr.it.takes.23/" class="text-white mx-2" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/kristan_dcstro/" class="text-white mx-2" target="_blank"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
   </footer>
@@ -388,46 +325,79 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
   <!-- Add AOS (Animate On Scroll) Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- Particles.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
     AOS.init();
-  </script>
-  <script>
-    // Toggle Chat Widget
-    function toggleChat() {
-      const chatWidget = document.getElementById('chatWidget');
-      chatWidget.style.display = chatWidget.style.display === 'block' ? 'none' : 'block';
-    }
 
-    // Send Message in Chat
-    function sendMessage() {
-      const chatInput = document.getElementById('chatInput');
-      const chatBody = document.getElementById('chatBody');
-      if (chatInput.value.trim() !== '') {
-        const message = document.createElement('p');
-        message.textContent = 'You: ' + chatInput.value;
-        chatBody.appendChild(message);
-        chatBody.scrollTop = chatBody.scrollHeight;
-        // Simulate a response
-        setTimeout(() => {
-          const response = document.createElement('p');
-          response.textContent = 'John: Thanks for your message! I'll get back to you soon.';
-          chatBody.appendChild(response);
-          chatBody.scrollTop = chatBody.scrollHeight;
-        }, 1000);
-        chatInput.value = '';
-      }
-    }
+    // Initialize Particles.js
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#eb7d00' },
+        shape: { type: 'circle', stroke: { width: 0, color: '#000000' } },
+        opacity: { value: 0.5, random: false },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#eb7d00',
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: 'none',
+          random: false,
+          straight: false,
+          out_mode: 'out',
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'grab' },
+          onclick: { enable: true, mode: 'push' },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
 
-    // Toggle Dark Mode
-    function toggleDarkMode() {
-      const body = document.body;
-      const navbar = document.querySelector('.navbar');
-      const skillCards = document.querySelectorAll('.skill-card');
-      const projectCards = document.querySelectorAll('.project-card');
-      body.classList.toggle('light-mode');
-      navbar.classList.toggle('light-mode');
-      skillCards.forEach(card => card.classList.toggle('light-mode'));
-      projectCards.forEach(card => card.classList.toggle('light-mode'));
+    // Smooth scroll with offset for fixed navbar
+    document.querySelectorAll('a.nav-link').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        const offset = 70; // Adjust this value to match your navbar height
+        const elementPosition = targetElement.offsetTop;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Add SweetAlert Script
+    function handleSubmit(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Thank you!',
+        text: 'Your message has been sent successfully.',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#eb7d00'
+      });
     }
   </script>
 </body>
