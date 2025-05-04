@@ -19,7 +19,7 @@
       scroll-behavior: smooth;
     }
     body {
-      background: linear-gradient(45deg, #2b1c0a, #4b2e1a, #2b1c0a);
+      background: linear-gradient(45deg, #4b0082, #800080, #4b0082); /* Purple gradient */
       background-size: 400%;
       animation: gradient 20s ease infinite;
       color: #fff;
@@ -45,7 +45,7 @@
     }
 
     .navbar {
-      background-color: rgba(43, 28, 10, 0.9);
+      background-color: rgba(75, 0, 130, 0.9); /* Purple navbar */
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
@@ -55,7 +55,7 @@
     }
 
     .nav-link:hover {
-      color: #eb7d00 !important;
+      color: #dda0dd !important; /* Light purple hover */
     }
 
     .section-title {
@@ -67,7 +67,7 @@
 
     .section-subtitle {
       font-size: 2rem;
-      color: #eb7d00;
+      color: #dda0dd; /* Light purple subtitle */
       margin-bottom: 40px;
       font-family: 'Russo One', Arial, sans-serif;
     }
@@ -78,7 +78,7 @@
 
     .skill-card, .project-card {
       background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid #eb7d00;
+      border: 1px solid #dda0dd; /* Light purple border */
       padding: 20px;
       border-radius: 10px;
       text-align: center;
@@ -93,7 +93,7 @@
 
     .skill-icon, .project-icon {
       font-size: 2rem;
-      color: #eb7d00;
+      color: #dda0dd; /* Light purple icons */
       margin-bottom: 15px;
     }
 
@@ -102,14 +102,14 @@
     }
 
     .btn-custom {
-      background-color: #eb7d00;
+      background-color: #800080; 
       color: #fff;
       border: none;
       font-family: 'Russo One', Arial, sans-serif;
     }
 
     .btn-custom:hover {
-      background-color: #cc6b00;
+      background-color: #4b0082; /* Darker purple on hover */
     }
 
     /* Dark Mode Toggle */
@@ -145,8 +145,13 @@
     }
 
     .profile-img:hover {
-      box-shadow: 0 0 20px 5px #eb7d00;
+      box-shadow: 0 0 20px 5px #dda0dd; /* Light purple glow */
       transform: scale(1.05);
+    }
+
+    .footer {
+      background: linear-gradient(45deg, #4b0082, #800080); /* Purple footer */
+      color: #fff;
     }
   </style>
 </head>
@@ -279,7 +284,7 @@
         <!-- No projects left -->
       </div>
       <!-- Button -->
-      <a href="https://github.com/kristannn139?tab=repositories" class="btn btn-custom mt-4" target="_blank">View My Projects</a>
+      <a href="https://github.com/kristannn139?tab=repositories" class="btn btn-danger mt-4" target="_blank">View My Projects</a>
     </div>
   </section>
 
@@ -310,7 +315,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-4" style="background: linear-gradient(45deg, #2b1c0a, #4b2e1a); color: #fff;">
+  <footer class="py-4 footer">
     <div class="container text-center">
       <p>© 2025 Kristan. All Rights Reserved.</p>
       <div>
